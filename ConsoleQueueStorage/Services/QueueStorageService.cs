@@ -44,7 +44,7 @@ namespace ConsoleQueueStorage.Services
         public void PeakAtMessageFromtheQueue(string queueName)
         {
             CloudQueue queue = _queueClient.GetQueueReference(queueName);
-            CloudQueueMessage queueMessage = queue.PeekMessageAsync().Result;
+            CloudQueueMessage queueMessage = queue.PeekMessageAsync().GetAwaiter().GetResult();
             Console.WriteLine("Peak Message : {0}", queueMessage.AsString);
         }
     }
