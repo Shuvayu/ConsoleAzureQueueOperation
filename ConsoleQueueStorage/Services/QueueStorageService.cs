@@ -22,7 +22,7 @@ namespace ConsoleQueueStorage.Services
         public void CreateQueueStorageQueue(string queueName)
         {
             CloudQueue queue = _queueClient.GetQueueReference(queueName);
-            queue.CreateIfNotExistsAsync().Wait();
+            queue.CreateIfNotExistsAsync().GetAwaiter().GetResult();
             Console.WriteLine("Queue {0} has been created !!!", queueName);
         }
 
@@ -37,7 +37,7 @@ namespace ConsoleQueueStorage.Services
         {
             CloudQueue queue = _queueClient.GetQueueReference(queueName);
             CloudQueueMessage queueMessage = new CloudQueueMessage(message);
-            queue.AddMessageAsync(queueMessage).Wait();
+            queue.AddMessageAsync(queueMessage).GetAwaiter().GetResult();
             Console.WriteLine("Message has been added to the Queue.");
         }
 

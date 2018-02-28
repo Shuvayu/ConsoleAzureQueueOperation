@@ -10,7 +10,7 @@ namespace ConsoleQueueStorage
     {
         public static IConfigurationRoot Configuration { get; set; }
 
-        static void Main(string[] args)
+        static void Main()
         {
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -28,7 +28,7 @@ namespace ConsoleQueueStorage
 
             queueService.CreateQueueStorageQueue(TestResourceSettings.QueueName);
 
-            string message = "Queue Message: ID - " + DateTime.Now.Ticks.ToString();
+            var message = "Queue Message: ID - " + DateTime.Now.Ticks.ToString();
             queueService.InsertMessageIntoQueue(TestResourceSettings.QueueName, message);
             queueService.GetMessageFromQueue(TestResourceSettings.QueueName);
             queueService.PeakAtMessageFromtheQueue(TestResourceSettings.QueueName);
